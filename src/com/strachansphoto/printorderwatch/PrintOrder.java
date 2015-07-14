@@ -1,11 +1,10 @@
 package com.strachansphoto.printorderwatch;
 
+import org.ini4j.Ini;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -13,6 +12,8 @@ import java.util.*;
  * Created by admin on 10/7/2015.
  */
 public class PrintOrder {
+    String mPort = "LPT1";
+
     String mOrderid;
     String mCustomerName;
     String mPaymentStaffName;
@@ -27,6 +28,8 @@ public class PrintOrder {
     double mDeliverAmount;
     double  mCashTended;
     JSONArray mOrderlines;
+
+    DecimalFormat df = new DecimalFormat("0.00");
 
     public void setOrderTotal(double orderTotal) {
         mOrderTotal = orderTotal;
@@ -84,7 +87,17 @@ public class PrintOrder {
         mOrderlines = jsonObjectLine;
     }
 
-    public PrintOrder() { }
+    public PrintOrder() throws IOException {
+        Ini mIni = new Ini();
+        java.io.File mCurrentDir = new java.io.File("");
+
+        mIni.load(new FileReader(mCurrentDir + "settings.ini"));
+        Ini.Section section = mIni.get("printer");
+        mPort = section.get("port");
+
+    }
+
+//todo change to template baseed
 
 
     public boolean print() throws IOException {
@@ -104,12 +117,7 @@ public class PrintOrder {
         double orderTotal = 0;
         int printTotal = 0;
 
-        DecimalFormat df = new DecimalFormat("0.00");
-
-        java.io.File currentDir = new java.io.File("");
-
-        FileOutputStream fileOutputStream = new FileOutputStream("LPT1");  //currentDir+mOrderid+".txt"
-        //System.out.println(currentDir+mOrderid+".txt");
+        FileOutputStream fileOutputStream = new FileOutputStream(mPort);
         PrintStream printStream = new PrintStream(fileOutputStream);
         //Shop copy
         printStream.print(GS);

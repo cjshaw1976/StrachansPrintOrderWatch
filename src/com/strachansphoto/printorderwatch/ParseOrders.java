@@ -19,7 +19,7 @@ public class ParseOrders {
 
     public ParseOrders() { }
 
-    public void parseForOrders(String jsonInput, PollForOrders pollForOrders){
+    public void parseForOrders(String jsonInput, PollForOrders pollForOrders) throws IOException {
         Object obj= JSONValue.parse(jsonInput);
         JSONArray array=(JSONArray)obj;
 

@@ -3,9 +3,9 @@ package com.strachansphoto.printorderwatch;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import org.apache.commons.io.FileUtils;
+import org.ini4j.Ini;
 
-import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,16 +17,20 @@ import java.util.logging.Level;
  * Created by admin on 10/7/2015.
  */
 public class PollForOrders {
-    String mBranchId;
+    String mBranchKey;
     OkHttpClient client = new OkHttpClient();
     LogFile logFile = new LogFile();
+    Ini mIni = new Ini();
 
     public PollForOrders () {
         java.io.File mCurrentDir = new java.io.File("");
         try {
-            mBranchId = FileUtils.readFileToString(new File(mCurrentDir + "location.txt")).trim();
+            mIni.load(new FileReader(mCurrentDir + "settings.ini"));
+            Ini.Section section = mIni.get("branch");
+            mBranchKey = section.get("key");
         } catch (IOException e) {
-            logFile.log(Level.SEVERE, "Failed to open file location.txt");
+            logFile.log(Level.SEVERE, e.getMessage());
+            //todo exit program with message
         }
     }
 
@@ -44,7 +48,7 @@ public class PollForOrders {
 
     public String poll() throws IOException, NoSuchAlgorithmException {
         String url = "http://orders.strachansphoto.com/poll/"
-                + sha1(mBranchId + "branchSaltonthewoundispainful" + requiredDate());
+                + sha1(mBranchKey + "branchSaltonthewoundispainful" + requiredDate());
 
         Request request = new Request.Builder()
                 .url(url)
