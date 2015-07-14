@@ -18,7 +18,7 @@ public class Main {
         int mDelay = 0;                  // no delay
         int mPeriod = 10000;             // repeat every 10 sec.
         Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
+        final TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 try {

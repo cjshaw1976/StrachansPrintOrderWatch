@@ -36,7 +36,7 @@ public class PollForOrders {
 
     public boolean mark(String orderId) throws IOException, NoSuchAlgorithmException {
         String url = "http://orders.strachansphoto.com/poll/"
-                + sha1(orderId + "printedSaltonthewoundispainful" + requiredDate());
+                + sha1(orderId + "printed" + mBranchKey + requiredDate());
 
         Request request = new Request.Builder()
                 .url(url)
@@ -48,7 +48,7 @@ public class PollForOrders {
 
     public String poll() throws IOException, NoSuchAlgorithmException {
         String url = "http://orders.strachansphoto.com/poll/"
-                + sha1(mBranchKey + "branchSaltonthewoundispainful" + requiredDate());
+                + sha1(mBranchKey + "branch" + requiredDate());
 
         Request request = new Request.Builder()
                 .url(url)
@@ -59,7 +59,7 @@ public class PollForOrders {
             return response.body().string();
         } else {
             logFile.log(Level.WARNING, "Poll error: " + response.message());
-            return response.message();
+            return "";
         }
     }
 

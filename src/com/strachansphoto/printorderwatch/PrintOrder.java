@@ -199,7 +199,7 @@ public class PrintOrder {
         }
 
         //if(mOrderlines.size() < 6) {
-            printStream.print(LF);
+            //printStream.print(LF);
             printStream.print(ESC);
             printStream.print('E');
             printStream.print(ON); //Empasize On
