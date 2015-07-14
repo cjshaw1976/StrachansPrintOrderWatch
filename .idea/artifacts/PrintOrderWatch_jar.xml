@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="PrintOrderWatch:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PrintOrderWatch_jar</output-path>
+    <root id="archive" name="PrintOrderWatch.jar">
+      <element id="module-output" name="PrintOrderWatch" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/directory/studio/org.apache.commons.io/2.4/org.apache.commons.io-2.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-io/commons-io/2.4/commons-io-2.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/findbugs/annotations/1.0.0/annotations-1.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okio/okio/1.4.0/okio-1.4.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okhttp/okhttp/2.4.0/okhttp-2.4.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
